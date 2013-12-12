@@ -28,6 +28,14 @@ require 'spree/testing_support/factories'
 require 'spree/testing_support/controller_requests'
 require 'spree/testing_support/authorization_helpers'
 require 'spree/testing_support/url_helpers'
+require 'spree/testing_support/order_walkthrough'
+require 'vcr'
+
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+  c.hook_into :faraday
+end
 
 # Requires factories defined in lib/spree_pay_u/factories.rb
 require 'spree_pay_u/factories'
