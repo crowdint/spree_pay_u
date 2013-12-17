@@ -6,4 +6,6 @@ gem 'spree_core', github: 'spree/spree', branch: '2-0-stable'
 gem 'spree_sample', github: 'spree/spree', branch: '2-0-stable'
 gem 'pry-debugger'
 gem 'pry', '0.9.12.2'
+gem 'vcr'
+
 gemspec
