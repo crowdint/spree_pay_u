@@ -20,7 +20,7 @@ module Spree
           {
             number: source.number,
             securityCode: source.verification_value,
-            expirationDate: "#{source.year}/#{source.month}",
+            expirationDate: "#{source.year}/#{source.month.to_s.rjust(2, '0')}",
             name: credit_card_name
           }
         end
