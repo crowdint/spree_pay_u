@@ -2,13 +2,20 @@ module Spree
   module PayU
     module Request
       class CreditCard < Base
+        CREDIT_CARD_TYPES = {
+          'visa'               => 'VISA',
+          'master'             => 'MASTERCARD',
+          'american_express'   => 'AMEX',
+          'diners_club'        => 'DINERS',
+        }
+
         def transaction
           {
             transaction: {
               order: order,
               creditCard: credit_card,
               type: 'AUTHORIZATION_AND_CAPTURE',
-              paymentMethod: source.cc_type.try(:upcase),
+              paymentMethod: cc_type(source),
               extraParameters: extra_parameters
             }
          }
@@ -36,6 +43,10 @@ module Spree
 
         def credit_card_name
           test? ? 'APPROVED' : source.name
+        end
+
+        def cc_type(source)
+          CREDIT_CARD_TYPES[source.cc_type]
         end
       end
     end
