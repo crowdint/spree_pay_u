@@ -21,7 +21,7 @@ describe Spree::PayU::Provider do
     end
 
     it 'returns a pay u response' do
-      expect(subject.purchase(10, source)).to be_a_kind_of(Spree::PayU::Response)
+      expect(subject.purchase(1000, source)).to be_a_kind_of(Spree::PayU::Response)
     end
 
   end

@@ -23,3 +23,5 @@
 </p>
 <%= hidden_field param_prefix, 'first_name', :value => @order.billing_firstname %>
 <%= hidden_field param_prefix, 'last_name', :value => @order.billing_lastname %>
+
+<%= render 'spree/payu/session_id', payment: payment_method %>

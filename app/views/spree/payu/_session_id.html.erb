@@ -1,0 +1,10 @@
+<% session_id = Spree::PayU::Session.id(payment.preferred_account_id) %>
+
+<p style="background:url(https://maf.pagosonline.net/ws/fp?id=<%= session_id %>)"></p>
+<img src="https://maf.pagosonline.net/ws/fp/clear.png?id=<%= session_id %>">
+<script src="https://maf.pagosonline.net/ws/fp/check.js?id=<%= session_id %>"></script>
+<object type="application/x-shockwave-flash"
+        data="https://maf.pagosonline.net/ws/fp/fp.swf?id=<%= session_id %>" width="1" height="1"
+        id="thm_fp">
+  <param name="movie" value="https://maf.pagosonline.net/ws/fp/fp.swf?id=<%= session_id %>" />
+</object>
