@@ -70,6 +70,22 @@ module Spree
             }
           }
         end
+
+        def payer
+          {
+              fullName: gateway_options[:billing_address][:name],
+              emailAddress: gateway_options[:email],
+              billingAddress: {
+                  street1: gateway_options[:billing_address][:address1],
+                  street2: gateway_options[:billing_address][:address2],
+                  city: gateway_options[:billing_address][:city],
+                  state: gateway_options[:billing_address][:state],
+                  country: gateway_options[:billing_address][:country],
+                  postalCode: gateway_options[:billing_address][:zip],
+                  phone: gateway_options[:billing_address][:phone],
+              }
+          }
+        end
       end
     end
   end

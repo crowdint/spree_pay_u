@@ -17,7 +17,8 @@ module Spree
               type: 'AUTHORIZATION_AND_CAPTURE',
               paymentMethod: cc_type(source),
               extraParameters: extra_parameters,
-              deviceSessionId: Spree::PayU::Session.id(options[:account_id])
+              deviceSessionId: Spree::PayU::Session.id(options[:account_id]),
+              payer: payer
             }
          }
         end
