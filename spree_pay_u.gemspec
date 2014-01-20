@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'faraday'
   s.add_dependency 'faraday_middleware'
   s.add_dependency 'oj'
-  s.add_dependency 'spree_core', '~> 2.0.7.beta'
+  s.add_dependency 'spree', '~> 2.0.7.beta'
   s.add_dependency 'typhoeus'
 
   s.add_development_dependency 'capybara', '~> 2.1'

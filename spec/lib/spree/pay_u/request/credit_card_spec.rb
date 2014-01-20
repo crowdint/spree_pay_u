@@ -21,6 +21,9 @@ describe Spree::PayU::Request::CreditCard do
       }
     end
 
+    before do
+      subject.stub payer: {}
+    end
     specify { expect(subject.transaction[:transaction][:type]).to eq('AUTHORIZATION_AND_CAPTURE') }
 
     specify { expect(subject.transaction[:transaction][:creditCard]).to eq(expected_credit_card) }

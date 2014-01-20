@@ -8,7 +8,6 @@ describe 'Checkout with PayU' do
   context 'Credit card' do
     let!(:country) { create(:country, :states_required => true) }
     let!(:state) { create(:state, :country => country) }
-    let!(:shipping_method) { create(:shipping_method) }
     let!(:stock_location) { create(:stock_location) }
     let!(:order) { OrderWalkthrough.up_to(:delivery) }
     let!(:user) { create(:user) }
