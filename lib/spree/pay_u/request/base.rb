@@ -55,7 +55,7 @@ module Spree
             signature: signature,
             additionalValues: additional_values,
             accountId: options[:account_id],
-            notifyUrl: "#{Spree::Config[:site_url]}/pay_u/payments",
+            notifyUrl: "http://#{Spree::Config[:site_url]}/pay_u/payments",
             buyer: ''
           }
         end
