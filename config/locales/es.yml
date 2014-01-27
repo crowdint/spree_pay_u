@@ -1,0 +1,33 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+es:
+  spree:
+    pay_u:
+      payment:
+        approved: La transacción fue aprobada
+        declined: La transacción fue rechazada
+        error: Ocurrió un error procesando la transacción
+        pending: La transacción quedó pendiente
+        entity_declined: La transacción fue declinada por el banco
+        antifraud_rejected: La transacción fue rechazada por el sistema anti-fraude
+        pending_transaction_review: La transacción fue detenida y debe ser revisada, esto puede ocurrir por filtros de seguridad
+        internal_payment_provider_error: Ocurrió un error en el sistema intentando procesar el pago
+        inactive_payment_provider: El proveedor de pagos no se encontraba activo
+        digital_ceertificate_not_found: La red financiera reportó un error en la autenticación
+        payment_network_rejected: La red financiera rechazó la transacción
+        invalid_expiration_date_or_security_code: El código de seguridad o la fecha de expiración estaba inválido
+        insufficient_founds: La cuenta no tenía fondos suficientes
+        credit_card_not_authorized_for_internet_transactions: La tarjeta de crédito no estaba autorizada para transacciones por Internet
+        invalid_transactions: La red financiera reportó que la transacción fue inválida
+        invalid_card: La tarjeta es inválida
+        expired_card: La tarjeta ya expiró
+        restricted_card: La tarjeta presenta una restricción
+        contact_the_entity: Debe contactar al banco
+        repeat_transaction: Se debe repetir la transacción
+        entity_messaging_error: La red financiera reportó un error de comunicaciones con el banco
+        pending_transaction_confirmation: La transacción está pendiente de ser confirmada
+        bank_unreachable: El banco no se encontraba disponible
+        exceeded_amount: La transacción excede un monto establecido por el banco
+        not_accepted_transaction: La transacción no fue aceptada por el banco por algún motivo
+        error_converting_transaction_amounts: Ocurrió un error convirtiendo los montos a la moneda de pago

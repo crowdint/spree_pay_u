@@ -8,12 +8,16 @@ module Spree
       end
 
       def actions
-        %w(purchase)
+        %w(authorize capture)
       end
 
-      def purchase(money, source, gateway_options = {})
+      def authorize(money, source, gateway_options = {})
         options = { amount: (money/100), source: source, gateway_options: gateway_options }
         Response.new(client.request(source.class, options))
+      end
+
+      def capture(money, source, gateway_options)
+        ActiveMerchant::Billing::Response.new(true, '')
       end
     end
   end

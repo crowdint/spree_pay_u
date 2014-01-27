@@ -2,4 +2,32 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  spree:
+    pay_u:
+      payment:
+        approved: The transaction was approved
+        declined: The transaction was declined
+        error: An error ocurred processing the transaction
+        pending: The transaction was left pending
+        entity_declined: The transaction was declined by the bank
+        antifraud_rejected: The transaction was rejected by the anti-fraud system
+        pending_transaction_review: The transaction was stopped and needs to be reviewed
+        internal_payment_provider_error: An error ocurred in the system trying to process the payment
+        inactive_payment_provider: The payment provider was not active
+        digital_ceertificate_not_found: The financial network reported an authentication error
+        payment_network_rejected: The financial network rejected the trasaction
+        invalid_expiration_date_or_security_code: The security code or the expiration date is invalid
+        insufficient_founds: The account has insuficient found
+        credit_card_not_authorized_for_internet_transactions: The credit card was not authorized for Internet transactions
+        invalid_transactions: The financial network reported that the transaction was invalid
+        invalid_card: The card is invalid
+        expired_card: The card expired
+        restricted_card: The card has one restriction
+        contact_the_entity: You must contact your bank
+        repeat_transaction: You must repeat the transaction
+        entity_messaging_error: The financial network reported a commonication error with the bank
+        pending_transaction_confirmation: The transaction is pending to be confirmed
+        bank_unreachable: The bank was not available
+        exceeded_amount: The transaction exceeded the bank amount
+        not_accepted_transaction: The transction was not accepted by the bank
+        error_converting_transaction_amounts: An error ocurred with the amount conversion

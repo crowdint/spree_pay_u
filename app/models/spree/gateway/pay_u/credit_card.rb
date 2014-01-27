@@ -11,12 +11,14 @@ module Spree
     attr_accessible :preferred_staging_server, :preferred_production_server, :preferred_language,
                     :preferred_api_key, :preferred_api_login, :preferred_merchant_id, :preferred_account_id
 
+    delegate :authorize, :capture, to: :provider
+
     def provider_class
       Spree::PayU::Provider
     end
 
     def auto_capture?
-      true
+      false
     end
 
     def method_type
