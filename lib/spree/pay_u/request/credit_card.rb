@@ -18,7 +18,10 @@ module Spree
               paymentMethod: cc_type(source),
               extraParameters: extra_parameters,
               deviceSessionId: source.device_session_id,
-              payer: payer
+              payer: payer,
+              ipAddress: ip_address,
+              cookie: cookie,
+              userAgent: user_agent
             }
          }
         end

@@ -56,7 +56,7 @@ module Spree
             additionalValues: additional_values,
             accountId: options[:account_id],
             notifyUrl: "http://#{Spree::Config[:site_url]}/pay_u/payments",
-            buyer: ''
+            buyer: buyer
           }
         end
 
@@ -72,6 +72,22 @@ module Spree
           }
         end
 
+        def buyer
+          {
+              fullName: gateway_options[:shipping_address][:name],
+              emailAddress: gateway_options[:email],
+              contactPhone: gateway_options[:shipping_address][:phone],
+              shippingAddress: {
+                  street1: gateway_options[:shipping_address][:address1],
+                  city: gateway_options[:shipping_address][:city],
+                  state: gateway_options[:shipping_address][:state],
+                  country: gateway_options[:shipping_address][:country],
+                  postalCode: gateway_options[:shipping_address][:zip],
+                  phone: gateway_options[:shipping_address][:phone]
+              }
+          }
+        end
+
         def payer
           {
               fullName: gateway_options[:billing_address][:name],
@@ -83,9 +99,21 @@ module Spree
                   state: gateway_options[:billing_address][:state],
                   country: gateway_options[:billing_address][:country],
                   postalCode: gateway_options[:billing_address][:zip],
-                  phone: gateway_options[:billing_address][:phone],
+                  phone: gateway_options[:billing_address][:phone]
               }
           }
+        end
+
+        def ip_address
+          source.ip_address
+        end
+
+        def cookie
+          source.cookie
+        end
+
+        def user_agent
+          source.user_agent
         end
       end
     end

@@ -12,14 +12,24 @@ shared_examples_for 'pay_u_request' do
       api_key: 'bar',
       merchant_id: 'mer123',
       amount: 10,
-      account_id: 'account123'
+      account_id: 'account123',
     }
   end
 
   let(:gateway_options) do
     {
       order_id: 'order123',
-      currency: 'MXN'
+      currency: 'MXN',
+      shipping_address: {
+          name: 'foo',
+          address1: 'address1',
+          address2: 'address2',
+          city: 'xx city',
+          state: 'xx state',
+          country: 'xx country',
+          zip: '12345',
+          phone: '12345678'
+      }
     }
   end
 
@@ -88,27 +98,6 @@ shared_examples_for 'pay_u_request' do
     it 'encodes a string in the format specified by pay u to md5' do
       signature = Digest::MD5.hexdigest('bar~mer123~order123~10~MXN')
       expect(subject.signature).to eq(signature)
-    end
-  end
-
-  describe '#order' do
-    before do
-      subject.stub signature: '123'
-      subject.stub additional_values: {}
-    end
-
-    specify do
-      expected_order = {
-          referenceCode: 'order123',
-          description: 'spree order',
-          language: 'es',
-          signature: '123',
-          additionalValues: {},
-          accountId: 'account123',
-          buyer: ''
-      }
-
-      expect(subject.order).to eq(expected_order)
     end
   end
 

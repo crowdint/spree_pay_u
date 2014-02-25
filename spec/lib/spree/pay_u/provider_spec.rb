@@ -8,7 +8,7 @@ describe Spree::PayU::Provider do
   end
 
   describe '#actions' do
-    specify { expect(subject.actions).to eq(%w(purchase)) }
+    specify { expect(subject.actions).to eq(%w(authorize capture)) }
   end
 
   describe '#purchase' do
@@ -21,7 +21,7 @@ describe Spree::PayU::Provider do
     end
 
     it 'returns a pay u response' do
-      expect(subject.purchase(1000, source)).to be_a_kind_of(Spree::PayU::Response)
+      expect(subject.authorize(1000, source)).to be_a_kind_of(Spree::PayU::Response)
     end
 
   end

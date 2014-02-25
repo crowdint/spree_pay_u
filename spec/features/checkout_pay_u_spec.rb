@@ -10,6 +10,7 @@ describe 'Checkout with PayU' do
     let!(:state) { create(:state, :country => country) }
     let!(:stock_location) { create(:stock_location) }
     let!(:order) { OrderWalkthrough.up_to(:delivery) }
+    let!(:line_item) { order.line_items.last }
     let!(:user) { create(:user) }
 
     let!(:pay_u_payment_method) do
@@ -24,7 +25,10 @@ describe 'Checkout with PayU' do
     end
 
     before do
-      order.update_attribute(:user_id, user.id)
+      line_item.price = 100.0
+      line_item.save
+      order.update_column(:user_id, user.id)
+      order.reload.update!
       Spree::StoreController.any_instance.stub(:current_order => order)
       Spree::StoreController.any_instance.stub(:try_spree_current_user => user)
       visit spree.checkout_state_path(:payment)
@@ -37,27 +41,27 @@ describe 'Checkout with PayU' do
     end
 
     specify 'A payment should be successfully made with a valid credit card', js: true do
-      within '#payment' do
-        choose 'Credit card'
-        fill_in 'Card Number', with: '4111111111111111'
-        fill_in 'Card Code', with: '123'
-      end
       VCR.use_cassette('valid_credit_card') do
+        within '#payment' do
+          choose 'Credit card'
+          fill_in 'Card Number', with: '4111111111111111'
+          fill_in 'Card Code', with: '123'
+        end
         click_button 'Save and Continue'
+        page.should have_content("Your order has been processed successfully")
       end
-      page.should have_content("Your order has been processed successfully")
     end
 
     specify 'A payment should not be processed with an invalid credit card', js: true do
-      within '#payment' do
-        choose 'Credit card'
-        fill_in 'Card Number', with: '4111111111111111'
-        fill_in 'Card Code', with: '13'
-      end
       VCR.use_cassette('invalid_credit_card') do
+        within '#payment' do
+          choose 'Credit card'
+          fill_in 'Card Number', with: '4111111111111111'
+          fill_in 'Card Code', with: '13'
+        end
         click_button 'Save and Continue'
+        page.should have_content("1 error prohibited this record from being saved")
       end
-      page.should have_content("1 error prohibited this record from being saved")
     end
   end
 end

@@ -8,7 +8,12 @@ describe Spree::PayU::Request::CreditCard do
                               verification_value: '123',
                               cc_type: 'visa',
                               year: '2018',
-                              month: '08')
+                              month: '08',
+                              device_session_id: 'foo-bar',
+                              ip_address: '127.0.0.1',
+                              cookie: 'my-cookie',
+                              user_agent: 'my-user-agent',
+                              )
   end
 
   describe '#transaction' do

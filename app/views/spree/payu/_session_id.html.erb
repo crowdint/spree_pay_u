@@ -1,14 +1,18 @@
 <% param_prefix = "payment_source[#{payment.id}]" %>
-
-<% session_id = Spree::PayU::Session.id(payment.preferred_account_id) %>
+<% session = Spree::PayU::Session.new(request) %>
+<% session_id = session.id %>
+<% maf_session_id = "#{session_id}80200" %>
 
 <p style="background:url(https://maf.pagosonline.net/ws/fp?id=<%= session_id %>)"></p>
-<img src="https://maf.pagosonline.net/ws/fp/clear.png?id=<%= session_id %>">
-<script src="https://maf.pagosonline.net/ws/fp/check.js?id=<%= session_id %>"></script>
+<img src="https://maf.pagosonline.net/ws/fp/clear.png?id=<%= maf_session_id %>">
+<script src="https://maf.pagosonline.net/ws/fp/check.js?id=<%= maf_session_id %>"></script>
 <object type="application/x-shockwave-flash"
-        data="https://maf.pagosonline.net/ws/fp/fp.swf?id=<%= session_id %>" width="1" height="1"
+        data="https://maf.pagosonline.net/ws/fp/fp.swf?id=<%= maf_session_id %>" width="1" height="1"
         id="thm_fp">
-  <param name="movie" value="https://maf.pagosonline.net/ws/fp/fp.swf?id=<%= session_id %>" />
+  <param name="movie" value="https://maf.pagosonline.net/ws/fp/fp.swf?id=<%= maf_session_id %>" />
 </object>
 
 <%= hidden_field param_prefix, 'device_session_id', :value => session_id %>
+<%= hidden_field param_prefix, 'ip_address', :value => session.ip %>
+<%= hidden_field param_prefix, 'cookie', :value => session.cookie %>
+<%= hidden_field param_prefix, 'user_agent', :value => session.user_agent %>

@@ -6,7 +6,7 @@ describe Spree::Gateway::PayU::CreditCard do
   end
 
   describe 'auto_capture?' do
-    specify { expect(subject.auto_capture?).to be_true }
+    specify { expect(subject.auto_capture?).to be_false }
   end
 
   describe '#method_type' do

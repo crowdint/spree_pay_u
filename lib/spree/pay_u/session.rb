@@ -2,11 +2,27 @@ require 'securerandom'
 
 module Spree
   module PayU
-    module Session
-      extend self
+    class Session
+      attr_reader :request
 
-      def id(account)
-        "#{Digest::MD5.hexdigest(SecureRandom.uuid)}#{account}"
+      def initialize(request)
+        @request = request
+      end
+
+      def id
+        "#{Digest::MD5.hexdigest(SecureRandom.uuid)}"
+      end
+
+      def ip
+        request.ip
+      end
+
+      def user_agent
+        request.user_agent
+      end
+
+      def cookie
+        request.cookies['_session_id']
       end
     end
   end
