@@ -92,6 +92,7 @@ module Spree
           {
               fullName: gateway_options[:billing_address][:name],
               emailAddress: gateway_options[:email],
+              contactPhone: gateway_options[:billing_address][:phone],
               billingAddress: {
                   street1: gateway_options[:billing_address][:address1],
                   street2: gateway_options[:billing_address][:address2],
