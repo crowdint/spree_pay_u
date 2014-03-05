@@ -3,7 +3,7 @@
 <% session_id = session.id %>
 <% maf_session_id = "#{session_id}80200" %>
 
-<p style="background:url(https://maf.pagosonline.net/ws/fp?id=<%= session_id %>)"></p>
+<p style="background:url(https://maf.pagosonline.net/ws/fp?id=<%= maf_session_id %>)"></p>
 <img src="https://maf.pagosonline.net/ws/fp/clear.png?id=<%= maf_session_id %>">
 <script src="https://maf.pagosonline.net/ws/fp/check.js?id=<%= maf_session_id %>"></script>
 <object type="application/x-shockwave-flash"
