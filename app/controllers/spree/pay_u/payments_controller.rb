@@ -6,7 +6,7 @@ module Spree
         if params[:response_code_pol] == '1'
           payment.capture!
           Spree::PayUMailer.notify_completed(payment).deliver!
-        else
+        elsif !payment.failed?
           payment.failure!
           Spree::PayUMailer.notify_rejected(payment, params).deliver!
         end

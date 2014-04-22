@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe Spree::PayU::PaymentsController do
   routes { Spree::Core::Engine.routes }
@@ -32,6 +33,19 @@ describe Spree::PayU::PaymentsController do
 
       it 'should send a rejected payment email' do
         expect(Spree::BaseMailer.deliveries.last.subject).to eq 'The transaction was declined'
+      end
+    end
+
+    context 'Payment already rejected' do
+      before do
+        payment.failure!
+        Spree::BaseMailer.deliveries.clear
+        Spree::Payment.should_receive(:find_by_identifier).with('bar').and_return payment
+        post :create, response_code_pol: 2, reference_sale: 'foo-bar', response_message_pol: 'DECLINED'
+      end
+
+      it 'should not send any email' do
+        expect(Spree::BaseMailer.deliveries).to be_empty
       end
     end
   end
